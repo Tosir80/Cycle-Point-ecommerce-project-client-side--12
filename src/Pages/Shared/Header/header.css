@@ -1,0 +1,32 @@
+.navbar{
+    background-color: #faf1f1 ;
+    border-bottom: 2px solid red;
+    box-shadow: 1px 1px 5px 1px rgba(109, 104, 104, 0.616);
+}
+
+.brand{
+    color:rgb(15, 4, 78);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 40px;
+}
+.brand img{ width :40px;
+height: 35px;
+border-radius: 60%;
+margin-right: 8px;
+}
+
+.header a{
+    color:rgb(15, 4, 78);
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.navbar .selected {
+    color:rgb(84, 214, 33);
+    
+}
+
+

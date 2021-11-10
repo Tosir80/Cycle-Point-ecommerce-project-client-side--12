@@ -1,0 +1,28 @@
+
+.login form{
+    display: flex;
+     flex-direction: column;
+     max-width: 500px;
+     
+}
+.login input{
+    margin:8px 0;
+    outline:none;
+    border: none;
+    border-bottom: 1px solid rgb(6, 12, 100);
+    
+}
+
+.login .loginBtn{
+    background-color: rgb(6, 12, 100);
+    border-radius: 15px;
+    color:white;
+    font-weight: 600;
+}
+
+.googleBtn{
+     background-color: rgb(6, 12, 100);
+    border-radius: 15px;
+    color:rgb(231, 228, 17);
+    font-weight: 600;
+}

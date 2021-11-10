@@ -1,0 +1,19 @@
+
+
+.price{
+    color:orangered;
+
+}
+
+.orderBtn{
+    border:2px solid orangered ;
+    border-radius: 5px;
+    color:orangered;
+}
+
+.orderBtn:hover{
+   background-color:  orangered ;
+   color:white;
+   font-weight: 600;
+
+}
