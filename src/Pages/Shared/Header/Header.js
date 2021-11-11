@@ -3,10 +3,13 @@ import { Container,Nav, Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import './header.css'
 import logo from '../../../img/logo.png'
+import useAuth from '../../Hooks/useAuth';
+import Button from '@restart/ui/esm/Button';
 const Header = () => {
+  const{user,logOut}=useAuth()
     return (
       <>
-        <Navbar className='navbar' expand='md' variant='dark'>
+        <Navbar className='navbar' expand='md' variant='light'>
           <Container>
             <NavLink className='brand' to='/home'>
               <img src={logo} alt='' />
@@ -21,9 +24,20 @@ const Header = () => {
                 <NavLink to='/explore' activeClassName='selected'>
                   Explore
                 </NavLink>
-                <NavLink to='/Login' activeClassName='selected'>
-                  Login
-                </NavLink>
+                {user?.email && <NavLink to='/dashboard' activeClassName='selected'>
+                  Dashboard
+                </NavLink> }
+                {user?.email ? (
+                  <div className="d-flex">
+                    {user?.photoURL?<img className='img-fluid rounded-circle w-25 mx-2' src={user?.photoURL} alt='' /> :
+                     <h4 className="me-1 ">{user?.displayName}</h4> }
+                     <Button className="loginBtn" onClick={()=>logOut()}>LogOut</Button>   
+                  </div>
+                ) : (
+                  <NavLink to='/Login' activeClassName='selected'>
+                    Login
+                  </NavLink>
+                )}
               </Nav>
             </Navbar.Collapse>
           </Container>

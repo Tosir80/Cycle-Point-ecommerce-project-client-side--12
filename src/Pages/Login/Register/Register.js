@@ -1,11 +1,13 @@
 import Button from '@restart/ui/esm/Button';
 import React, { useState } from 'react';
-import { Alert, Col, Container, Row } from 'react-bootstrap';
+import {  Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import register from '../../../img/register.png';
+import useAuth from '../../Hooks/useAuth';
+import { useHistory } from 'react-router';
 const Register = () => {
-        const [registerData, setLoginData] = useState({});
-
+       const [registerData, setLoginData] = useState({});
+      const {loginUsingGoogle,register}=useAuth()
         const onBlurHander = (e) => {
           const flied = e.target.name;
           const value = e.target.value;
@@ -13,15 +15,16 @@ const Register = () => {
           newData[flied] = value;
           setLoginData(newData);
         };
-
+       
+        const history =useHistory()
         const registerHandler = (e) => {
           console.log(registerData)
           e.preventDefault();
-          console.log(registerData.password)
           if(registerData.password!==registerData.password2){
              alert('password not match')
              return
           }
+          register(registerData.email,registerData.password,registerData.name ,history)
           
         };
     return (
@@ -52,10 +55,10 @@ const Register = () => {
                 <div className='p-2 me-5 text-center'>
                   <h5>
                     Already have An Account?
-                    <Link to='/register'> Sign In</Link>
+                    <Link to='/login'> Sign In</Link>
                   </h5>
                   <p>-----------------Or----------------</p>
-                  <Button className='googleBtn'>Login With Google</Button>
+                  <Button className='googleBtn' onClick={()=>loginUsingGoogle()}>Login With Google</Button>
                 </div>
               </div>
             </Col>

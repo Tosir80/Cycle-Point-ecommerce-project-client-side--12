@@ -17,3 +17,13 @@
    font-weight: 600;
 
 }
+.imgscale {
+	overflow: hidden;
+}
+.imgscale img{ 
+    transition: all .3s ease-in;
+}
+.imgscale:hover img { 
+    	transform: scale(1.25);
+        padding-bottom:10px;
+}
