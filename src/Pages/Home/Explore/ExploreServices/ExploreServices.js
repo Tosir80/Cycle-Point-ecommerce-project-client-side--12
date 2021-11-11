@@ -33,12 +33,11 @@ const ExploreServices = () => {
                       src={pd.img}
                     />
                     <Card.Body>
-                      <Card.Title>{pd.name}</Card.Title>
+                      <Card.Title> <h4>{pd.name}</h4> </Card.Title>
                       <Card.Text>{pd.description}</Card.Text>
                       <div className='d-flex justify-content-around'>
                         <h5 className='price'>${pd.price}</h5>
                         <Link to={`/order/${pd._id}`}>
-                          {' '}
                           <Button className='orderBtn'>Order Now</Button>
                         </Link>
                       </div>

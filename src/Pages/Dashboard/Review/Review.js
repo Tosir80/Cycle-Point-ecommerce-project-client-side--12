@@ -22,7 +22,6 @@ const Review = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-          console.log(data)
         if (data.acknowledged) {
           toast('Review Added Successfully !!');
         }
@@ -42,7 +41,7 @@ const handleRating = (rate) => {
       <div>
         <Row>
           <Col>
-            <ToastContainer />;
+            <ToastContainer />
             <div className='review'>
               <h3 className='review-title'>Add your Review to about us</h3>
               <form onSubmit={handleSubmit(onSubmit)}>

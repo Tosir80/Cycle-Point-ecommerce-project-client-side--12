@@ -18,9 +18,8 @@ const useFirbase=()=>{
  const [user,setUser]=useState({})
  const [authError ,setAuthError]=useState('')
  const[isLoading,setIsLoading]=useState(true)
-
+ const [admin , setAdmin] =useState()
 //  email password login--
-
 const register=(email, password,name,history)=>{
   setIsLoading(true);
  createUserWithEmailAndPassword(auth, email, password)
@@ -28,6 +27,8 @@ const register=(email, password,name,history)=>{
     setAuthError('')
     const newUser={ email, displayName:name}
     setUser(newUser)
+
+     savedUser(email,name,"POST");
     // for send name on firebase 
     updateProfile(auth.currentUser, {
       displayName:name
@@ -69,7 +70,11 @@ const loginUsingGoogle=(location,history)=>{
    .then((result) => {
      const destination = location.state?.from || '/';
      history.push(destination);
+     console.log(result.user)
+     console.log(result.user.email)
+     savedUser(result.user.email, result.user.displayName, 'PUT');
      setUser(result.user);
+     
    })
    .catch((error) => {
      const errorCode = error.code;
@@ -106,6 +111,26 @@ useEffect(()=>{
     return ()=>unsubscribed
 },[])
 
+// send data to mongodb server
+const savedUser=(email,displayName,method)=>{
+  const user = {email,displayName}
+  fetch('http://localhost:5000/saveduser', {
+    method: method,
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(user)
+  }).then()
+}
+
+//isadmin check 
+
+useEffect(()=>{
+  fetch(`http://localhost:5000/${user.email}`)
+ .then(res=>res.json())
+ .then(data=>setAdmin(data.admin))
+},[user?.email])
+
+
+
 return {
   user,
   authError,
@@ -113,7 +138,8 @@ return {
   loginUsingGoogle,
   logIn,
   logOut,
-  isLoading
+  isLoading,
+  admin
 };
 }
 

@@ -1,8 +1,8 @@
 import Button from '@restart/ui/esm/Button';
 import React, { useState } from 'react';
 import { Col, Row, Tab } from 'react-bootstrap';
-import './dashboard.css'
-import profile from '../../../img/profile.png'
+import './dashboard.css';
+import profile from '../../../img/profile.png';
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,23 +15,31 @@ import MyOrder from '../MyOrder/MyOrder';
 import Pay from '../Pay/Pay';
 import Review from '../Review/Review';
 import useAuth from '../../Hooks/useAuth';
+import ManageAllOrder from '../ManageAllOrder/ManageAllOrder';
+import AddProduct from '../AddProduct/AddProduct';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import ManageProduct from '../ManageProducts/ManageProduct';
 
 const Dashboard = () => {
-    let { path, url } = useRouteMatch();
-     const { user, logOut } = useAuth();
-    return (
-      <>
-        <Row>
-          <Col sm={12} md={3}>
-            <div className='nestedNav'>
-              <div className="Customer">
-                <div className="bg-info p-2 text-center rounded shadow-lg">
-                  {user?.photoURL? <img className="rounded-circle" src={user?.photoURL} alt="" />:
-                  <img className="rounded-circle w-100" src={profile} alt="" />
-                  }
-                  <h4 className="text-light py-2">Name : {user.displayName}</h4>
-                  <h6 className="text-light py-2">Name : {user.email}</h6>
-                </div>
+  let { path, url } = useRouteMatch();
+  const { user, logOut ,admin } = useAuth();
+  return (
+    <>
+      <Row>
+        <Col sm={12} md={3}>
+          <div className='nestedNav'>
+            <div className='bg-info p-2 text-center rounded shadow-lg'>
+              {user?.photoURL ? (
+                <img className='rounded-circle' src={user?.photoURL} alt='' />
+              ) : (
+                <img className='rounded-circle w-100' src={profile} alt='' />
+              )}
+              <h4 className='text-light py-2'>Name : {user.displayName}</h4>
+              <h6 className='text-light py-2'>Name : {user.email}</h6>
+            </div>
+            {/* ----------------customer----- */}
+            {!admin ? (
+              <div className='Customer'>
                 <li>
                   <NavLink activeClassName='nestedSelcted' to={`${url}/pay`}>
                     Pay
@@ -51,25 +59,79 @@ const Dashboard = () => {
                   </NavLink>
                 </li>
               </div>
-              <Button onClick={()=>logOut()} className="btn bg-warning btn-outline-light px-5 b">LogOut</Button>
-            </div>
-          </Col>
-          <Col sm={12} md={9}>
-            <Switch>
-              <Route path={`${path}/pay`}>
-                <Pay></Pay>
-              </Route>
-              <Route path={`${path}/myorder`}>
-                <MyOrder></MyOrder>
-              </Route>
-              <Route path={`${path}/review`}>
-                <Review></Review>
-              </Route>
-            </Switch>
-          </Col>
-        </Row>
-      </>
-    );
+            ) : (
+              <div>
+                {/* admin------ */}
+                <li>
+                  <NavLink
+                    activeClassName='nestedSelcted'
+                    to={`${url}/manageorder`}
+                  >
+                    Manage all Order
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    activeClassName='nestedSelcted'
+                    to={`${url}/addproduct`}
+                  >
+                    Add Proudct
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    activeClassName='nestedSelcted'
+                    to={`${url}/makeadmin`}
+                  >
+                    Make Admin
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    activeClassName='nestedSelcted'
+                    to={`${url}/manageproduct`}
+                  >
+                    Manage Products
+                  </NavLink>
+                </li>
+              </div>
+            )}
+            <Button
+              onClick={() => logOut()}
+              className='btn bg-warning btn-outline-light px-5 b'
+            >
+              LogOut
+            </Button>
+          </div>
+        </Col>
+        <Col sm={12} md={9}>
+          <Switch>
+            <Route path={`${path}/pay`}>
+              <Pay></Pay>
+            </Route>
+            <Route path={`${path}/myorder`}>
+              <MyOrder></MyOrder>
+            </Route>
+            <Route path={`${path}/review`}>
+              <Review></Review>
+            </Route>
+            <Route path={`${path}/manageorder`}>
+              <ManageAllOrder></ManageAllOrder>
+            </Route>
+            <Route path={`${path}/addproduct`}>
+              <AddProduct></AddProduct>
+            </Route>
+            <Route path={`${path}/makeadmin`}>
+              <MakeAdmin></MakeAdmin>
+            </Route>
+            <Route path={`${path}/manageproduct`}>
+              <ManageProduct></ManageProduct>
+            </Route>
+          </Switch>
+        </Col>
+      </Row>
+    </>
+  );
 };
 
 export default Dashboard;
