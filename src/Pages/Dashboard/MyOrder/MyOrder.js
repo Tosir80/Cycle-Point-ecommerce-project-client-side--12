@@ -39,7 +39,7 @@ return (
         {orders.map((order) => (
           <div
             key={order._id}
-            className='p-1 d-flex bg-info border-bottom border-success border-5 my-3 justify-content-around align-items-center me-3'
+            className='p-1 d-sm-flex bg-info border-bottom border-success border-5 my-3 text-center justify-content-around align-items-center me-3'
           >
             <h4>{order.name}</h4>
             <img
@@ -50,10 +50,9 @@ return (
             />
             <h3 className='text-primary'>{order.price}</h3>
             <h4>{order.address}</h4>
-            <h4>{order.phone}</h4>
             <h6>{order.date}</h6>
             {order.status === 'Pending' ? (
-              <Button className='btn btn-danger'>{order.status}</Button>
+              <Button className='btn btn-danger me-5 me-md-0'>{order.status}</Button>
             ) : (
               <Button className='btn btn-success'>{order.status}</Button>
             )}
