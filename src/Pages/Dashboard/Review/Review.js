@@ -15,10 +15,10 @@ const Review = () => {
     data.img=user.photoURL
     data.rating=rating
     data.date=datee
-    fetch('http://localhost:5000/addreview', {
+    fetch('https://peaceful-harbor-44338.herokuapp.com/addreview', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     })
       .then((res) => res.json())
       .then((data) => {

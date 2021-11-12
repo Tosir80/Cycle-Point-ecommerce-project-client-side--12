@@ -18,7 +18,7 @@ const useFirbase=()=>{
  const [user,setUser]=useState({})
  const [authError ,setAuthError]=useState('')
  const[isLoading,setIsLoading]=useState(true)
- const [admin , setAdmin] =useState()
+ const [admin , setAdmin] =useState(false)
 //  email password login--
 const register=(email, password,name,history)=>{
   setIsLoading(true);
@@ -70,8 +70,6 @@ const loginUsingGoogle=(location,history)=>{
    .then((result) => {
      const destination = location.state?.from || '/';
      history.push(destination);
-     console.log(result.user)
-     console.log(result.user.email)
      savedUser(result.user.email, result.user.displayName, 'PUT');
      setUser(result.user);
      
@@ -114,20 +112,21 @@ useEffect(()=>{
 // send data to mongodb server
 const savedUser=(email,displayName,method)=>{
   const user = {email,displayName}
-  fetch('http://localhost:5000/saveduser', {
+  fetch('https://peaceful-harbor-44338.herokuapp.com/saveduser', {
     method: method,
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(user)
-  }).then()
+    body: JSON.stringify(user),
+  }).then();
 }
 
 //isadmin check 
 
 useEffect(()=>{
-  fetch(`http://localhost:5000/${user.email}`)
- .then(res=>res.json())
- .then(data=>setAdmin(data.admin))
-},[user?.email])
+  fetch(`https://peaceful-harbor-44338.herokuapp.com/makeadmin/${user.email}`)
+    .then((res) => res.json())
+    .then((data) => setAdmin(data.admin));
+    
+},[user.email])
 
 
 

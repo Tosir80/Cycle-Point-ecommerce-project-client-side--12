@@ -8,14 +8,14 @@ const AddProduct = () => {
      const {user}=useAuth()
   const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
   const onSubmit = data =>{
-    fetch('http://localhost:5000/addproduct', {
+    fetch('https://peaceful-harbor-44338.herokuapp.com/addproduct', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     })
       .then((res) => res.json())
       .then((data) => {
-          console.log(data)
+        console.log(data);
         if (data.acknowledged) {
           toast('Product Added Successfully !!');
         }

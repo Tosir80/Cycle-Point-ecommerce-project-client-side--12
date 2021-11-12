@@ -15,7 +15,7 @@ SwiperCore.use([Pagination]);
 const ShowReview = () => {
     const [review, setReview] = useState([]);
     useEffect(() => {
-      fetch('http://localhost:5000/review')
+      fetch('https://peaceful-harbor-44338.herokuapp.com/review')
         .then((res) => res.json())
         .then((data) => setReview(data));
     }, [review]);
@@ -33,7 +33,7 @@ const ShowReview = () => {
             className='mySwiper '
           >
             {review.map((rw) => (
-              <SwiperSlide>
+              <SwiperSlide key={rw._id}>
                 <Col>
                   <Card className='shadow m-3 p-2'>
                     <div>

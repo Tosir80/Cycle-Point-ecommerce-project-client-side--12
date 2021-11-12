@@ -34,7 +34,7 @@ const googleLogin=()=>{
 }
 
     return (
-      <div>
+      <div style={{ height: '70vh' }}>
         <Container>
           <ToastContainer />;
           <Row>

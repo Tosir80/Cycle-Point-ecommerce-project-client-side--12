@@ -19,10 +19,12 @@ import ManageAllOrder from '../ManageAllOrder/ManageAllOrder';
 import AddProduct from '../AddProduct/AddProduct';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import ManageProduct from '../ManageProducts/ManageProduct';
+import AdminRoute from '../AdminRoute/AdminRoute';
 
 const Dashboard = () => {
   let { path, url } = useRouteMatch();
   const { user, logOut ,admin } = useAuth();
+  console.log(admin)
   return (
     <>
       <Row>
@@ -38,7 +40,7 @@ const Dashboard = () => {
               <h6 className='text-light py-2'>Name : {user.email}</h6>
             </div>
             {/* ----------------customer----- */}
-            {!admin ? (
+            {!admin? (
               <div className='Customer'>
                 <li>
                   <NavLink activeClassName='nestedSelcted' to={`${url}/pay`}>
@@ -115,18 +117,18 @@ const Dashboard = () => {
             <Route path={`${path}/review`}>
               <Review></Review>
             </Route>
-            <Route path={`${path}/manageorder`}>
+            <AdminRoute path={`${path}/manageorder`}>
               <ManageAllOrder></ManageAllOrder>
-            </Route>
-            <Route path={`${path}/addproduct`}>
+            </AdminRoute>
+            <AdminRoute path={`${path}/addproduct`}>
               <AddProduct></AddProduct>
-            </Route>
-            <Route path={`${path}/makeadmin`}>
+            </AdminRoute>
+            <AdminRoute path={`${path}/makeadmin`}>
               <MakeAdmin></MakeAdmin>
-            </Route>
-            <Route path={`${path}/manageproduct`}>
+            </AdminRoute>
+            <AdminRoute path={`${path}/manageproduct`}>
               <ManageProduct></ManageProduct>
-            </Route>
+            </AdminRoute>
           </Switch>
         </Col>
       </Row>

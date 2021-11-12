@@ -14,12 +14,12 @@ const Order = () => {
 
     const { _id, img, name, price, description } = product;
     useEffect(()=>{
-        fetch(`http://localhost:5000/order/${id}`)
-        .then(res=>res.json())
-        .then(data=>setProduct(data))
+        fetch(`https://peaceful-harbor-44338.herokuapp.com/order/${id}`)
+          .then((res) => res.json())
+          .then((data) => setProduct(data));
     },[])
 
- const { register, handleSubmit, watch, formState: { errors } } = useForm();
+ const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
         const date= new Date()
         const datee=date.toLocaleDateString()
     const onSubmit = (data) => {
@@ -33,17 +33,23 @@ const Order = () => {
         ...data
       };
       
-      fetch('http://localhost:5000/order', {
+      fetch('https://peaceful-harbor-44338.herokuapp.com/order', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(cartData),
-      }).then(res=>res.json())
-      .then(data=>{
-        console.log(data)
-        if(data.acknowledged){
-          swal('Product Added Successfully!', `ProductId: ${data.insertedId}`, 'success');
-        }
       })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.acknowledged) {
+            swal(
+              'Product Added Successfully!',
+              `ProductId: ${data.insertedId}`,
+              'success'
+            );
+          }
+        });
+      reset()
     };
     return (
       <div>

@@ -1,4 +1,9 @@
-.footer{
+.footerBg{
     background-color: rgb(15, 4, 78);
     color:white;
+    
+}
+.footerBrand {
+    text-decoration: none;
+    font-size: 20px;
 }

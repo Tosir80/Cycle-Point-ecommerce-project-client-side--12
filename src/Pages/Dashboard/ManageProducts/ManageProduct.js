@@ -7,22 +7,22 @@ import Spinner from '../../Shared/Spinner/Spinner'
 const ManageProduct = () => {
   const [services, setServices] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5000/services')
+    fetch('https://peaceful-harbor-44338.herokuapp.com/services')
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, [services]);
 
 const deleteHandler =(id)=>{
-  const confirm=window.confirm("Are want remove product from your Order?")
+  const confirm=window.confirm("Are want remove product from your Store?")
   if(!confirm){return}
-fetch(`http://localhost:5000/deleteProduct/${id}`, {
+fetch(`https://peaceful-harbor-44338.herokuapp.com/deleteProduct/${id}`, {
   method: 'DELETE',
 })
   .then((res) => res.json())
-  .then((data) =>{
-      if(data.deletedCount==1){
-           toast("Deleted Successfully !!")
-      }
+  .then((data) => {
+    if (data.deletedCount == 1) {
+      toast('Deleted Successfully !!');
+    }
   });
 }
   
