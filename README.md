@@ -3,7 +3,7 @@
 ## Pages
 - Home 
 - Explore
--Dashboard 
+- Dashboard 
 
 ## Customer Features 
 - Customer can order a any product from home page and explore page 
