@@ -51,7 +51,7 @@ const register=(email, password,name,history)=>{
 const logIn = (email, password, location, history) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-        const destination = location.state?.from || '/';
+        const destination = location.state?.from || '/dashboard';
         history.push(destination);
     })
     .catch((error) => {
@@ -68,7 +68,7 @@ const loginUsingGoogle=(location,history)=>{
   setIsLoading(true);
  signInWithPopup(auth, googleProvider)
    .then((result) => {
-     const destination = location.state?.from || '/';
+     const destination = location.state?.from || '/dashboard';
      history.push(destination);
      savedUser(result.user.email, result.user.displayName, 'PUT');
      setUser(result.user);
@@ -124,8 +124,7 @@ const savedUser=(email,displayName,method)=>{
 useEffect(()=>{
   fetch(`https://peaceful-harbor-44338.herokuapp.com/makeadmin/${user.email}`)
     .then((res) => res.json())
-    .then((data) => setAdmin(data.admin));
-    
+    .then((data) => setAdmin(data.admin))
 },[user.email])
 
 

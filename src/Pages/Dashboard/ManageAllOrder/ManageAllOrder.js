@@ -2,9 +2,11 @@ import Button from '@restart/ui/esm/Button';
 import React, { useEffect, useState } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 import { toast, ToastContainer } from 'react-toastify';
+import useAuth from '../../Hooks/useAuth';
 import Spinner from '../../Shared/Spinner/Spinner'
 const ManageAllOrder = () => {
 const [allOrder,setAllOrder]=useState([]) 
+const {isLoading ,admin} =useAuth()
 useEffect(()=>{
     fetch('https://peaceful-harbor-44338.herokuapp.com/allorder')
       .then((res) => res.json())
@@ -43,10 +45,10 @@ const deleteHandler = (id) => {
 
     return (
       <div>
-        {allOrder.length === 0 ? (
+        {allOrder.length===0? (
           <div className='text-center mt-3'>
-            {/* <Spinner animation='border' variant='primary' /> */}
-            <Spinner></Spinner>
+            <Spinner animation='border' variant='primary' />
+            {/* <Spinner></Spinner> */}
           </div>
         ) : (
           <div>

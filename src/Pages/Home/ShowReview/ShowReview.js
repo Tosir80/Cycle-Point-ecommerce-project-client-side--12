@@ -21,14 +21,15 @@ const ShowReview = () => {
     }, [review]);
     return (
       <Container>
-        <h3 className='text-center pb-5 text-warning'>Ours Customer Review</h3>
-        <Row >
+        <h3 className='text-center pb-5 fw-bold mt-2' style={{ color: '#f7762c' }}>
+          Ours Customer Review
+        </h3>
+        <Row>
           <Swiper
             slidesPerView={2}
             spaceBetween={30}
             pagination={{
               clickable: true,
-             
             }}
             className='mySwiper '
           >

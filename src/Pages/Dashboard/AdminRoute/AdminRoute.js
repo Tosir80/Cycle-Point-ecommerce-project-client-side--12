@@ -4,10 +4,11 @@ import useAuth from '../../Hooks/useAuth';
 import Spinner from '../../Shared/Spinner/Spinner';
 const AdminRoute = ({ children, ...rest }) => {
   let { user, isLoading ,admin } = useAuth();
-  if (isLoading) {
+  if (!admin) {
     return (
       <div className='text-center py-5'>
-        <Spinner></Spinner>
+         <Spinner></Spinner>
+
       </div>
     );
   }
@@ -15,7 +16,7 @@ const AdminRoute = ({ children, ...rest }) => {
     <Route
       {...rest}
       render={({ location }) =>
-        user?.email && admin ? (
+        user?.email && admin? (
           children
         ) : (
           <Redirect
