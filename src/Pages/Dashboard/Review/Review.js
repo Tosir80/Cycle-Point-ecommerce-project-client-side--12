@@ -40,7 +40,7 @@ const handleRating = (rate) => {
     return (
       <div>
         <Row>
-          <Col>
+          <Col  >
             <ToastContainer />
             <div className='review'>
               <h3 className='review-title'>Add your Review to about us</h3>

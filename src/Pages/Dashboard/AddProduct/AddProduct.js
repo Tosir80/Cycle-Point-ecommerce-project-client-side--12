@@ -29,7 +29,7 @@ const AddProduct = () => {
             <ToastContainer />
             <div className='review'>
               <h3 className='review-title'>Add your Product</h3>
-              <form onSubmit={handleSubmit(onSubmit)}>
+              <form onSubmit={handleSubmit(onSubmit)} >
                 <input type="text" placeholder="Product Name" {...register('name')} />
                 <input type="text" placeholder="Product description" {...register('description')} />
                 <input type="text" placeholder="Product Img Url " {...register('img')} />

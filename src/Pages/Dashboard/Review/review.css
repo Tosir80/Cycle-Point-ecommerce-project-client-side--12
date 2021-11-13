@@ -1,14 +1,14 @@
 .review-title{
     text-align: center;
       margin-top: 30px;
-      padding:20px;
+      padding:20px 0;
 }
 .review form{
     display: flex;
      flex-direction: column;
-     max-width: 500px;
-        
+     max-width: 400px;
        margin:0 auto; 
+       padding-left: 20px;
 }
 .review input,textarea{
     margin:8px 0;

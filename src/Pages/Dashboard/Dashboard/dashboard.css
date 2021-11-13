@@ -1,6 +1,8 @@
+
+
 .nestedNav{
     background: rgb(6, 22, 110);
-    padding:20px;
+    padding-left: 20px;
     min-height: 80vh;
 }
 .nestedNav li{

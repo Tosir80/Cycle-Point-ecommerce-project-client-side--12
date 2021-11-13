@@ -26,7 +26,7 @@ const OnBlurHandle=(e)=>{
       <div>
         <Row>
           <ToastContainer />
-          <Col>
+          <Col >
             <div className='review mt-5'>
               <h4 className="text-center">Make an Admin</h4>
               <form onSubmit={adminHandler}>

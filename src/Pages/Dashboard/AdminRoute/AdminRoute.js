@@ -4,7 +4,7 @@ import useAuth from '../../Hooks/useAuth';
 import Spinner from '../../Shared/Spinner/Spinner';
 const AdminRoute = ({ children, ...rest }) => {
   let { user, isLoading ,admin } = useAuth();
-  if (!admin) {
+  if ( !admin) {
     return (
       <div className='text-center py-5'>
          <Spinner></Spinner>

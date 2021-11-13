@@ -28,7 +28,7 @@ const Dashboard = () => {
   return (
     <>
       <Row>
-        <Col sm={12} md={3}>
+        <Col sm={12} md={3} className=" p-0 m-0">
           <div className='nestedNav'>
             <div className='bg-info p-2 text-center rounded shadow-lg'>
               {user?.photoURL ? (
@@ -106,7 +106,7 @@ const Dashboard = () => {
             </Button>
           </div>
         </Col>
-        <Col sm={12} md={9}>
+        <Col sm={12} md={8} className="p-0 m-0" >
           <Switch>
             <Route path={`${path}/pay`}>
               <Pay></Pay>
